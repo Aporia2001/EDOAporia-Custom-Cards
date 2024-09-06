@@ -17,3 +17,5 @@ Para usar mis cartas custom en EDOPro, cree un archivo "user_configs.json" dentr
 }
 
 Recomiendo usar la aplicación "Notepad++" para hacerlo.
+
+En caso de que se les dificulte crear el archivo "user_configs.json", descargue cualquiera de los archivos dentro de la carpeta "config" de este repositorio y péguelo en la carpeta de mismo nombre dentro del directorio del juego.
