@@ -50,7 +50,15 @@
 		{
 			"url": "default",
 			"type": "cover"
-		}
+		},
+		{
+			"type": "pic",
+        	"url": "https://raw.githubusercontent.com/Aporia2001/EDOAporia-Custom-Cards-pics/main/{}.jpg"
+        },
+        {
+        	"type": "field",
+        	"url": "https://raw.githubusercontent.com/Aporia2001/EDOAporia-Custom-Cards-pics/main/field/{}.jpg"
+        }
 	],
 	"servers": [
 		{
