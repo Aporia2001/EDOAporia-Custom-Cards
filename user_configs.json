@@ -1,0 +1,89 @@
+{
+	"repos": [
+		{
+			"url": "https://github.com/KSB-Custom/KSB-CCG",
+			"repo_name": "KSB Custom Cards",
+			"repo_path": "./repositories/KSBCustoms",
+			"should_update": true,
+			"should_read": true
+		},
+		{
+			"url": "https://github.com/Secuter/SecuterYGOCustomCards",
+			"repo_name": "Secuter Custom Cards",
+			"repo_path": "./repositories/secuter-custom-cards",
+			"data_path": "expansions",
+			"script_path": "script",
+			"should_update": true,
+			"should_read": true
+		},
+		{
+			"url": "https://github.com/Drakayshin/Cartas-Custom---DrakayStudios",
+			"repo_name": "Cartas Custom - DrakayStudios",
+			"repo_path": "./repositories/Drakayshin",
+			"data_path": "expansions",
+			"script_path": "script",
+			"should_update": true,
+			"should_read": true
+		},
+		{
+			"url": "https://github.com/GenesicZyrael/CrimsonAlpha",
+			"repo_name": "Crimson Alpha updates",
+			"repo_path": "./repositories/crimson-alpha",
+			"has_core": true,
+			"core_path": "bin",
+			"data_path": "",
+			"script_path": "script",
+			"should_update": true,
+			"should_read": true
+		},
+		{
+			"url": "https://github.com/Aporia2001/EDOAporia-Custom-Cards",
+			"repo_name": "EDOAporia-Custom-Cards",
+			"repo_path": "./repositories/EDOAporia-Custom-Cards",
+			"has_core": true,
+			"core_path": "bin",
+			"data_path": "",
+			"script_path": "script",
+			"should_update": true,
+			"should_read": true
+		}
+	],
+	"urls": [
+		{
+			"url": "https://raw.githubusercontent.com/Secuter/SecuterYGOCustomCards-pics/master/{}.png",
+			"type": "pic"
+		},
+		{
+			"url": "https://raw.githubusercontent.com/Secuter/SecuterYGOCustomCards-pics/master/field/{}.png",
+			"type": "field"
+		},
+		{
+			"url": "https://raw.githubusercontent.com/Secuter/SecuterYGOCustomCards-pics/master/field/{}.jpg",
+			"type": "field"
+		},
+		{
+            "type": "pic",
+            "url": "https://raw.githubusercontent.com/Aporia2001/EDOAporia-Custom-Cards-pics/main/{}.jpg"
+        },
+        {
+            "type": "field",
+            "url": "https://raw.githubusercontent.com/Aporia2001/EDOAporia-Custom-Cards-pics/main/field/{}.jpg"
+        }
+	],	
+	 "servers": [
+		{
+			"name": "Secuter Custom Cards",
+			"address": "duel.secutertools.win",
+			"duelport": 7820,
+			"roomaddress": "duel.secutertools.win",
+			"roomlistprotocol": "http",
+			"roomlistport": 7810
+		},
+		"name": "localhost",
+            "address": "127.0.0.1",
+            "roomaddress": "127.0.0.1",
+            "roomlistport": 7922,
+            "duelport": 7911
+		}
+    ]
+}
