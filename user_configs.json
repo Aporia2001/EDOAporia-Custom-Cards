@@ -62,15 +62,15 @@
 			"type": "field"
 		},
 		{
-            "type": "pic",
-            "url": "https://raw.githubusercontent.com/Aporia2001/EDOAporia-Custom-Cards-pics/main/{}.jpg"
-        },
-        {
-            "type": "field",
-            "url": "https://raw.githubusercontent.com/Aporia2001/EDOAporia-Custom-Cards-pics/main/field/{}.jpg"
-        }
-	],	
-	 "servers": [
+			"type": "pic",
+			"url": "https://raw.githubusercontent.com/Aporia2001/EDOAporia-Custom-Cards-pics/main/{}.jpg"
+		},
+		{
+			"type": "field",
+			"url": "https://raw.githubusercontent.com/Aporia2001/EDOAporia-Custom-Cards-pics/main/field/{}.jpg"
+		}
+	],
+	"servers": [
 		{
 			"name": "Secuter Custom Cards",
 			"address": "duel.secutertools.win",
@@ -79,11 +79,11 @@
 			"roomlistprotocol": "http",
 			"roomlistport": 7810
 		},
-		"name": "localhost",
-            "address": "127.0.0.1",
-            "roomaddress": "127.0.0.1",
-            "roomlistport": 7922,
-            "duelport": 7911
+			"name": "localhost",
+			"address": "127.0.0.1",
+			"roomaddress": "127.0.0.1",
+			"roomlistport": 7922,
+			"duelport": 7911
 		}
-    ]
+	]
 }
