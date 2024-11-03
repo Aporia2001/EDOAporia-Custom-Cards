@@ -25,12 +25,13 @@ function s.tdfilter(c)
 	return c:IsMonster() and c:IsSetCard(0xf10) and c:IsAbleToDeck()
 end
 function s.target(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsPlayerCanDraw(tp)
-		and Duel.GetMatchingGroup(s.tdfilter,tp,LOCATION_HAND|LOCATION_REMOVED,0,1,e:GetHandler()) end
-	Duel.SetTargetPlayer(tp)
+	if chk==0 then return Duel.IsPlayerCanDraw(tp,1)
+		and Duel.IsExistingMatchingCard(s.tdfilter,tp,LOCATION_HAND|LOCATION_REMOVED,0,1,nil) end
 	Duel.SetOperationInfo(0,CATEGORY_TODECK,nil,1,tp,LOCATION_HAND|LOCATION_REMOVED)
+	Duel.SetOperationInfo(0,CATEGORY_DRAW,nil,0,tp,1)
 end
 function s.activate(e,tp,eg,ep,ev,re,r,rp)
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
 	local g=Duel.SelectMatchingCard(tp,s.tdfilter,tp,LOCATION_HAND|LOCATION_REMOVED,0,1,3,nil)
 	local gg,rg=g:Split(Card.IsFaceup,nil)
 	if #gg>0 then Duel.HintSelection(gg,true) end
@@ -51,6 +52,7 @@ function s.effcon(e,tp,eg,ep,ev,re,r,rp)
 end
 function s.effop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
+	--Also treated as "Blue-Flames" monsters
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_FIELD)
 	e1:SetCode(EFFECT_ADD_SETCODE)
@@ -58,6 +60,7 @@ function s.effop(e,tp,eg,ep,ev,re,r,rp)
 	e1:SetValue(0xf10)
 	e1:SetReset(RESET_PHASE+PHASE_END)
 	Duel.RegisterEffect(e1,tp)
+	--Become FIRE Fiend monsters
 	local e2=Effect.CreateEffect(c)
 	e2:SetType(EFFECT_TYPE_FIELD)
 	e2:SetCode(EFFECT_CHANGE_RACE)
@@ -72,17 +75,17 @@ function s.effop(e,tp,eg,ep,ev,re,r,rp)
 	e3:SetValue(ATTRIBUTE_FIRE)
 	e3:SetReset(RESET_PHASE+PHASE_END)
 	Duel.RegisterEffect(e3,tp)
-	local e4=Effect.CreateEffect(c)
+	-- Halve battle damage
+	local e4=Effect.CreateEffect(e:GetHandler())
 	e4:SetType(EFFECT_TYPE_FIELD)
 	e4:SetCode(EFFECT_CHANGE_DAMAGE)
 	e4:SetProperty(EFFECT_FLAG_PLAYER_TARGET)
 	e4:SetTargetRange(0,1)
-	e4:SetValue(0)
+	e4:SetValue(s.damval)
 	e4:SetReset(RESET_PHASE+PHASE_END)
 	Duel.RegisterEffect(e4,tp)
-	local e5=e4:Clone()
-	e5:SetCode(EFFECT_NO_EFFECT_DAMAGE)
-	e5:SetReset(RESET_PHASE+PHASE_END)
-	Duel.RegisterEffect(e5,tp)
-	aux.RegisterClientHint(e:GetHandler(),nil,tp,1,0,aux.Stringid(id,0),nil)
+	aux.RegisterClientHint(c,nil,tp,1,0,aux.Stringid(id,0),nil)
+end
+function s.damval(e,re,val,r,rp,rc)
+	return math.floor(val/2)
 end

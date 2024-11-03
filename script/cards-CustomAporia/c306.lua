@@ -85,6 +85,17 @@ function s.atchop(e,tp,eg,ep,ev,re,r,rp)
 	if tc and not tc:IsImmuneToEffect(e) then
 		Duel.Overlay(c,tc,true)
 	end
+	-- Halve battle damage
+	local ct=Duel.IsTurnPlayer(tp) and 2 or 1
+	local e1=Effect.CreateEffect(e:GetHandler())
+	e1:SetType(EFFECT_TYPE_FIELD)
+	e1:SetCode(EFFECT_CHANGE_DAMAGE)
+	e1:SetProperty(EFFECT_FLAG_PLAYER_TARGET)
+	e1:SetTargetRange(0,1)
+	e1:SetValue(s.damval)
+	e1:SetReset(RESET_PHASE|PHASE_END|RESET_SELF_TURN,ct)
+	Duel.RegisterEffect(e1,tp)
+	aux.RegisterClientHint(e:GetHandler(),nil,tp,1,0,aux.Stringid(id,3),nil)
 end
 function s.spcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return e:GetHandler():CheckRemoveOverlayCard(tp,1,REASON_COST) end
@@ -105,4 +116,7 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	if #g>0 then
 		Duel.SpecialSummon(g,0,tp,tp,false,false,POS_FACEUP)
 	end
+end
+function s.damval(e,re,val,r,rp,rc)
+	return math.floor(val/2)
 end
