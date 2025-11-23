@@ -148,13 +148,15 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	if lc==0 then return end
 	if Duel.IsPlayerAffectedByEffect(tp,CARD_BLUEEYES_SPIRIT) then lc=1 end
 	local c=e:GetHandler()
-	local tc=Duel.SelectMatchingCard(tp,s.rtfilter,tp,LOCATION_REMOVED,0,1,1,nil,e,tp)
-	if #tc>0 and Duel.SendtoDeck(tc,nil,SEQ_DECKTOP,REASON_EFFECT)>0 then
+	local g=Duel.SelectMatchingCard(tp,s.rtfilter,tp,LOCATION_REMOVED,0,1,1,nil,e,tp)
+	if #g==0 then return end 
+	Duel.HintSelection(g,true)
+	if Duel.SendtoDeck(g,nil,SEQ_DECKTOP,REASON_EFFECT)>0 then
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
-		local lk=tc:GetFirst():GetLink()
+		local lk=g:GetFirst():GetLink()
 		lc=math.min(lc,lk)
-		local g=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.spfilter),tp,LOCATION_GRAVE|LOCATION_REMOVED,0,1,lc,nil,e,tp)
-		if #g>0 and Duel.SpecialSummon(g,0,tp,tp,false,false,POS_FACEUP) and c:IsFaceup() and c:IsRelateToEffect(e) then
+		local sg=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.spfilter),tp,LOCATION_GRAVE|LOCATION_REMOVED,0,1,lc,nil,e,tp)
+		if #sg>0 and Duel.SpecialSummon(sg,0,tp,tp,false,false,POS_FACEUP) and c:IsFaceup() and c:IsRelateToEffect(e) then
 			local e1=Effect.CreateEffect(c)
 			e1:SetType(EFFECT_TYPE_SINGLE)
 			e1:SetCode(EFFECT_UPDATE_ATTACK)
