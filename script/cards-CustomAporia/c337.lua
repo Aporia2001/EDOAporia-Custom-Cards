@@ -75,11 +75,12 @@ end
 function s.atkval(e,c)
 	return Duel.GetMatchingGroupCount(Card.IsType,e:GetHandlerPlayer(),LOCATION_GRAVE,LOCATION_GRAVE,nil,TYPE_LINK)*500
 end
-function s.negcon(e,tp,eg,ep,ev,re,r,rp)
-	return rp==1-tp and Duel.IsChainDisablable(ev) and e:GetHandler():GetFlagEffect(id)==0
-end
 function s.rmfilter(c)
 	return c:IsAbleToRemove() and c:IsMonster() and c:IsType(TYPE_LINK) and c:IsRace(RACE_CYBERSE)
+end
+function s.negcon(e,tp,eg,ep,ev,re,r,rp)
+	return rp==1-tp and Duel.IsChainDisablable(ev) and e:GetHandler():GetFlagEffect(id)==0
+		and Duel.IsExistingMatchingCard(s.rmfilter,tp,LOCATION_GRAVE,0,1,nil)
 end
 function s.negop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
