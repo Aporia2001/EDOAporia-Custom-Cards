@@ -112,14 +112,14 @@ function s.rmtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 end
 function s.rmop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE)
-	local tc=Duel.SelectMatchingCard(tp,s.rmfilter,tp,LOCATION_GRAVE,0,1,1,nil,e,tp)
-	local lk=tc:GetFirst():GetLink()
-	if #tc>0 and Duel.Remove(tc,POS_FACEUP,REASON_EFFECT)>0 then
+	local g=Duel.SelectMatchingCard(tp,s.rmfilter,tp,LOCATION_GRAVE,0,1,1,nil,e,tp)
+	local lk=g:GetFirst():GetLink()
+	if #g>0 and Duel.Remove(g,POS_FACEUP,REASON_EFFECT)>0 then
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
 		local dg=Duel.SelectMatchingCard(tp,Card.IsAbleToDeck,tp,0,LOCATION_ONFIELD|LOCATION_GRAVE,1,lk,nil)
-		if #dg>0 then
-			Duel.SendtoDeck(dg,nil,SEQ_DECKBOTTOM,REASON_EFFECT)
-		end
+		if #dg==0 then return end
+		Duel.HintSelection(dg,true)
+		Duel.SendtoDeck(dg,nil,SEQ_DECKBOTTOM,REASON_EFFECT)
 	end
 end
 function s.cfilter(c,tp,zone)
